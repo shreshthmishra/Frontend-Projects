@@ -30,8 +30,10 @@ function deleteTask(e) {
 
 function clearTasks(e) {
   const lis = document.querySelectorAll('ul li');
-  for (let i = 0; i < lis.length; i++) {
-    lis[i].remove();
+  if (confirm('Are you sure?')) {
+    for (let i = 0; i < lis.length; i++) {
+      lis[i].remove();
+    }
   }
 }
 
