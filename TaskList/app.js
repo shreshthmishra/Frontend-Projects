@@ -2,6 +2,7 @@ const ul = document.querySelector('.collection');
 const addform = document.querySelector('#task-form');
 const textField = document.querySelector('#task');
 const clearbutton = document.querySelector('.clear-tasks');
+const filter = document.querySelector('#filter');
 
 function addTask(e) {
   if (task.value === '') {
@@ -29,7 +30,7 @@ function deleteTask(e) {
 }
 
 function clearTasks(e) {
-  const lis = document.querySelectorAll('ul li');
+  const lis = document.querySelectorAll('.collection-item');
   if (confirm('Are you sure?')) {
     for (let i = 0; i < lis.length; i++) {
       lis[i].remove();
@@ -37,6 +38,19 @@ function clearTasks(e) {
   }
 }
 
+function addFilter(e) {
+  const text = e.target.value.toLowerCase();
+  const lis = document.querySelectorAll('.collection-item');
+  lis.forEach(function (li) {
+    if (li.innerText.toLowerCase().indexOf(text) !== -1) {
+      li.style.display = 'block';
+    } else {
+      li.style.display = 'none';
+    }
+  });
+}
+
 addform.addEventListener('submit', addTask);
 ul.addEventListener('click', deleteTask);
 clearbutton.addEventListener('click', clearTasks);
+filter.addEventListener('keyup', addFilter);
