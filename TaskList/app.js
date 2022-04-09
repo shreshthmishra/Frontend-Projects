@@ -1,6 +1,7 @@
 const ul = document.querySelector('.collection');
 const addform = document.querySelector('#task-form');
 const textField = document.querySelector('#task');
+const clearbutton = document.querySelector('.clear-tasks');
 
 function addTask(e) {
   if (task.value === '') {
@@ -27,5 +28,13 @@ function deleteTask(e) {
   }
 }
 
+function clearTasks(e) {
+  const lis = document.querySelectorAll('ul li');
+  for (let i = 0; i < lis.length; i++) {
+    lis[i].remove();
+  }
+}
+
 addform.addEventListener('submit', addTask);
 ul.addEventListener('click', deleteTask);
+clearbutton.addEventListener('click', clearTasks);
