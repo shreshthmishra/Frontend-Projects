@@ -5,6 +5,7 @@ const textField = document.querySelector('#task');
 function addTask(e) {
   if (task.value === '') {
     alert('Add a task');
+    return;
   }
   const li = document.createElement('li');
   li.className = 'collection-item';
@@ -18,4 +19,13 @@ function addTask(e) {
   e.preventDefault();
 };
 
+function deleteTask(e) {
+  if (e.target.parentElement.classList.contains('delete-item')) {
+    if (confirm('Are you sure?')) {
+      e.target.parentElement.parentElement.remove();
+    }
+  }
+}
+
 addform.addEventListener('submit', addTask);
+ul.addEventListener('click', deleteTask);
