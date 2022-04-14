@@ -16,6 +16,9 @@ function giveTotalInterest(a, b, c) {
 }
 
 function calculate(e) {
+  loading.style.display = 'none';
+  results.style.display = 'none';
+
   loading.style.display = 'block';
   setTimeout(loadRemove, 1000);
   function loadRemove() {
@@ -33,8 +36,25 @@ function calculate(e) {
       results.style.display = 'block';
     }
   } else {
-    console.log('ghj');
     showError();
   }
   e.preventDefault();
+}
+
+function showError() {
+  const div = document.createElement('div');
+  div.className = 'alert alert-danger';
+  div.innerText = "Please check your numbers";
+  const heading = document.querySelector('.heading');
+  const card = document.querySelector('.card');
+  setTimeout(addAlert, 1000);
+  function addAlert() {
+    card.insertBefore(div, heading);
+  }
+  setTimeout(removeAlert, 3000);
+  function removeAlert() {
+    const err = document.querySelector('.alert');
+    err.className = '';
+    err.innerText = '';
+  }
 }
