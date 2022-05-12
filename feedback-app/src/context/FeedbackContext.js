@@ -22,12 +22,32 @@ export const FeedbackProvider=({children}) => {
     }
   ])
 
+  const [feedbackEdit,setFeedbackEdit]=useState({
+    item:{},
+    edit:false
+  })
+
   function deleteFeedback(id){
     if(window.confirm('Are you sure?')){
       setFeedback(feedback.filter(function(item){
         return item.id!==id;
       }))
     }
+  }
+
+  function updateFeedback(id,updItem){
+    setFeedback(
+      feedback.map((item)=>{
+        return item.id===id?{...item,...updItem}:item
+      })
+    )
+  }
+
+  function editFeedback(item){
+    setFeedbackEdit({
+      item:item,
+      edit:true
+    })
   }
 
   function addFeedback(newFeedback){
@@ -40,6 +60,9 @@ export const FeedbackProvider=({children}) => {
       feedback,
       deleteFeedback,
       addFeedback,
+      editFeedback,
+      feedbackEdit,
+      updateFeedback,
     }}
     >
       {children}
